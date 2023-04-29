@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "jaime_lopez",
+    "password": null,
+    "database": "travel",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "jaime_lopez",
+    "password": null,
+    "database": "travel",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "jaime_lopez",
+    "password": null,
+    "database": "travel",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
