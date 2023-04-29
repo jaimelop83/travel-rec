@@ -2,6 +2,7 @@
 **This app has 3 parts to it: A NODE.JS Express Server, A POSTGRES DB utilizing SEQUELIZE, and a REACT FRONTEND **
 *This app is also utilizing the openai API to request information on recommendations for loactions*
 ## **Directory Structure**
+```
 .
 ├── README.md
 ├── package-lock.json
@@ -34,6 +35,7 @@
     │   └── userSeeder.js
     ├── server.js
     └── views
+```
 ### Database
 *./config/config.json is the sequelize configuration for psql*
 *./migrations directory hosts the migrations for creating user and recommendation in order to seed the database*
