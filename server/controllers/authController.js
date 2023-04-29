@@ -4,9 +4,6 @@
 // Import the User model
 const User = require('../models/userModel');
 
-// Import the bcrypt library
-const bcrypt = require('bcryptjs');
-
 // Generate JWT token
 const jwt = require('jsonwebtoken');
 

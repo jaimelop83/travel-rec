@@ -1,5 +1,50 @@
-// This controller will handle recommendations related operations. It will use the recommendation model to perform CRUD operations. The controller will receive the request from the client, validate the request, and send the response back to the client. The controller will use the recommendation model to interact with the database.
-// create a new recommendation after recieving data from the openai api
+// Controller to handle recommendations related operations
+// Path: server/controllers/recommendationController.js
 
-// retrieve recommendations for a specific user
-// update or delete a recommendation
+const { Recommendation } = require("../models");
+
+// Create and save a new Recommendation
+exports.createRecommendation = async (recommendationData) => {
+  try {
+    const recommendation = await Recommendation.create(recommendationData);
+    return recommendation;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// Retrieve all Recommendations for a specific user
+exports.findRecommendationsByUserId = async (userId) => {
+  try {
+    const recommendations = await Recommendation.findAll({
+      where: { userId: userId },
+    });
+    return recommendations;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// Update a Recommendation by ID
+exports.updateRecommendation = async (recommendationId, updatedData) => {
+  try {
+    const recommendation = await Recommendation.update(updatedData, {
+      where: { id: recommendationId },
+    });
+    return recommendation;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// Delete a Recommendation by ID
+exports.deleteRecommendation = async (recommendationId) => {
+  try {
+    const result = await Recommendation.destroy({
+      where: { id: recommendationId },
+    });
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};

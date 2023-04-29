@@ -6,3 +6,5 @@ module.exports = {
   'seeders-path': path.resolve('./server', 'seeders'),
   'models-path': path.resolve('./server', 'models'),
 };
+
+// used to tell Sequelize CLI where to find the config, migrations, seeders, and models

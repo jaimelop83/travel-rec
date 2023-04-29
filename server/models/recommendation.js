@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
   Recommendation.init({
     userId: DataTypes.UUID,
     destination: DataTypes.STRING,
+    reason: DataTypes.STRING, // this stores the reason for the recommendation
     recommendation: DataTypes.TEXT
   }, {
     sequelize,
