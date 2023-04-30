@@ -23,7 +23,7 @@ app.use(corsMiddleware);
 app.use(requestLogger);
 
 // Routes
-app.use(require(routes));
+app.use(routes);
 
 // Define simple route
 app.get('/', (req, res) => {

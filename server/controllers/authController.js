@@ -2,13 +2,13 @@
 // verifying user credentials, generating JWT tokens, etc.
 
 // Import the User model
-const User = require('../models/userModel');
+const User = require('../models/user');
 
 // Generate JWT token
 const jwt = require('jsonwebtoken');
 
 // Verify JWT token
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 
 // Verify user credentials
 exports.login = (req, res) => {

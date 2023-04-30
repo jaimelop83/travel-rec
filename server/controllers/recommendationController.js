@@ -48,3 +48,10 @@ exports.deleteRecommendation = async (recommendationId) => {
     throw error;
   }
 };
+
+module.exports = {
+  createRecommendation: exports.createRecommendation,
+  getRecommendations: exports.findRecommendationsByUserId,
+  updateRecommendation: exports.updateRecommendation,
+  deleteRecommendation: exports.deleteRecommendation,
+};

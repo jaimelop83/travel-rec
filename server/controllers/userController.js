@@ -1,6 +1,7 @@
 // controller to handle user related operations
-
-const User = require('../models/userModel');
+const bcrypt = require('bcrypt');
+const User = require('../models/user');
+const saltRounds = 10;
 
 // Create and Save a new User
 exports.create = (req, res) => {
@@ -26,6 +27,41 @@ exports.create = (req, res) => {
         }
     });
 }
+
+// Register a new admin user
+exports.createAdmin = async (req, res) => {
+    try {
+        const { email, name, password } = req.body;
+
+        // Validate request
+        if (!email || !name || !password) {
+            return res.status(400).send({ message: 'Content cannot be empty!' });
+        }
+
+        // Check if email already exists
+        const existingUser = await User.findOne({ where: { email } });
+        if (existingUser) {
+            return res.status(400).send({ message: 'Email already exists!' });
+        }
+
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+        // create a new user with admin privileges
+        const newUser = await User.create({
+            email,
+            name,
+            password: hashedPassword,
+            isAdmin: true,
+        });
+
+        // send the response
+        res.status(201).send({ message: 'Admin user registered successfully!', data: { id: newUser.id, name: newUser.name, email: newUser.email, isAdmin: newUser.isAdmin } });
+    } catch (error) {
+        res.status(500).send({ message: error.message || 'Some error occurred while registering the Admin.' });
+    }
+}
+
 
 // Retrieve all Users from the database
 exports.findAll = (req, res) => {
