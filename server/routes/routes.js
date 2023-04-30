@@ -21,8 +21,9 @@ router.post('/users/register-admin', userController.createAdmin);
 
 // User routes
 router.post('/users/register', userController.create);
-router.post('/users/login', userController.findOne);
+router.post('/users/login', authController.login);
 router.put('/users/:userId', authController.verifyToken, userController.update);
+router.get('/users', authController.verifyToken, userController.findAll);
 
 
 // Recomendation routes
