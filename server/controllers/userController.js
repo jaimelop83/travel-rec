@@ -1,6 +1,7 @@
 // controller to handle user related operations
 const bcrypt = require('bcrypt');
-const User = require('../models/user');
+const db = require('../models/index');
+const User = db.User;
 const saltRounds = 10;
 
 // Create and Save a new User

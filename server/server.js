@@ -9,6 +9,9 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 8080;
 
+// import db
+const db = require('./models');
+
 // import middleware
 const { corsMiddleware } = require('./middleware/corsMiddleware');
 const { requestLogger } = require('./middleware/loggingMiddleware');
@@ -32,6 +35,15 @@ app.get('/', (req, res) => {
 
 // Error handling middleware
 app.use(handleError);
+
+// synchronizse db
+db.sequelize.sync()
+    .then(() => {
+        console.log('Successfully connected to the database!');
+    })
+    .catch(err => {
+        console.log('Error connecting to the database: ', err);
+    });
 
 // Start the server
 app.listen(port, () => {
