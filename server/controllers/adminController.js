@@ -1,3 +1,7 @@
+// Description: Controller for admin routes
+// define user model
+const { User } = require("../models");
+
 
 // List all users
 exports.getAllUsers = async (req, res, next) => {
@@ -40,4 +44,3 @@ exports.getUserRecommendations = async (req, res, next) => {
       next(error);
     }
   }
-  

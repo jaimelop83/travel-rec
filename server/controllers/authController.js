@@ -52,16 +52,21 @@ exports.login = async (req, res) => { // Add async here
 
 // Verify JWT token
 exports.verifyToken = (req, res, next) => {
+    console.log('Executing verifyToken middleware');
     // Get the token from the request header
     const token = req.headers['x-access-token'];
+
+    console.log('Token Received: ', token);
 
     // Verify the token
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
         if (err) {
+            console.log('Error in verifyToken: ', err);
             res.status(401).send({ message: 'Unauthorized' });
         } else {
             req.userId = decoded.id;
             req.role = decoded.role;
+            console.log('Decoded JWT token: ', decoded);
             next();
         }
     });

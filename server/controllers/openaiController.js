@@ -21,21 +21,22 @@ const openai = axios.create({
 async function getOpenaiResponse(prompt, model) {
   try {
     const response = await openai.post(
-      "https://api.openai.com/v1/completions/",
+      "https://api.openai.com/v1/completions",
       {
         model: model,
         prompt: prompt,
         max_tokens: 500,
         temperature: 0.5,
         top_p: 1,
+        n: 1,
         frequency_penalty: 0.0,
         presence_penalty: 0.6,
-        stop: ["\n", " Human:", " AI:"],
       }
     );
-    return response.data.choices[0].text;
+    console.log("Response from OpenAI API: ", response.data.choices[0].text);
+    return response.data.choices[0].text.trim();
   } catch (err) {
-    console.log(err);
+    console.log('Error ocurred while calling OpenAI API: ', err.response.data);
     return handleError(err);
   }
 }
@@ -50,8 +51,12 @@ exports.getTravelSuggestions = async (req, res, next) => {
     const destinationPrompt = req.body.destinationPrompt;
     const reasonPrompt = req.body.reasonPrompt;
 
+    console.log("Destination Prompt: ", destinationPrompt);
+    console.log("Reason Prompt: ", reasonPrompt);
+
     // Combine the destination and reason prompts
     const combinedPrompt = `${destinationPrompt} ${reasonPrompt}`;
+    console.log("Combined Prompt: ", combinedPrompt);
 
     // Call getOpenaiResponse() with the combined prompt
     const openaiResponse = await getOpenaiResponse(
