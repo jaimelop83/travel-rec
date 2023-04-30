@@ -32,10 +32,10 @@ exports.create = (req, res) => {
 // Register a new admin user
 exports.createAdmin = async (req, res) => {
     try {
-        const { email, name, password } = req.body;
+        const { email, name, username, password } = req.body;
 
         // Validate request
-        if (!email || !name || !password) {
+        if (!email || !name || !username || !password) {
             return res.status(400).send({ message: 'Content cannot be empty!' });
         }
 
@@ -52,8 +52,9 @@ exports.createAdmin = async (req, res) => {
         const newUser = await User.create({
             email,
             name,
+            username,
             password: hashedPassword,
-            isAdmin: true,
+            role: 'admin', // set the user role to admin
         });
 
         // send the response
