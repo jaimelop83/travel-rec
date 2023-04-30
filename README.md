@@ -11,18 +11,21 @@
     ├── config
     │   └── config.json
     ├── controllers
+    │   ├── adminController.js
     │   ├── authController.js
     │   ├── openaiController.js
     │   ├── recommendationController.js
     │   └── userController.js
     ├── middleware
+    │   ├── adminMiddleware.js
     │   ├── authMiddleware.js
     │   ├── corsMiddleware.js
     │   ├── errorMiddleware.js
     │   └── loggingMiddleware.js
     ├── migrations
     │   ├── 20230428201254-create-user.js
-    │   └── 20230428201319-create-recommendation.js
+    │   ├── 20230428201319-create-recommendation.js
+    │   └── 20230430152940-add-role-to-user.js
     ├── models
     │   ├── index.js
     │   ├── recommendation.js
