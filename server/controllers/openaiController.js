@@ -7,7 +7,7 @@ const recommendationController = require("./recommendationController");
 require("dotenv").config({ path: "./server/config/.env" });
 
 // test if .env is found and passing the api key
-console.log("KEY IS THE FOLLOWING: ", process.env.OPENAI_API_KEY);
+// console.log("KEY IS THE FOLLOWING: ", process.env.OPENAI_API_KEY);
 
 // prep for openai api call authorization
 const openai = axios.create({
